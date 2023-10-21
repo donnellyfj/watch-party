@@ -1,6 +1,6 @@
 # Watch Party Chrome extension
 
-A WIP project to try and create a watch party out of any website that plays video. Right now it's code patched together from various docs (Python WebSockets, Chrome extensions) to get a base WebSocket system working, and then I'll start to build up the actual extension functionality.
+A WIP project to try and create a watch party out of any website that plays video. Right now it's code patched together from various docs (Python WebSockets, Chrome extensions) to get a base WebSocket system working, and allows for synchronized play/pause on various video streaming websites.
 
 ## Running this extension
 
