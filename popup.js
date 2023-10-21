@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+let video = document.getElementById("myVideo"); 
+
 const button = document.querySelector('#button');
 button.addEventListener('click', async () => {
   chrome.runtime.sendMessage({ val: 'buttonPress'});
@@ -20,4 +22,16 @@ button.addEventListener('click', async () => {
 const toggle = document.querySelector('#toggle');
 toggle.addEventListener('click', async () => {
   chrome.runtime.sendMessage({ val: 'toggleConnect'});
+});
+
+const playPause = document.querySelector('#playPause');
+playPause.addEventListener('click', async () => {
+  // Send message to content
+  chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+    var activeTab = tabs[0];
+    chrome.tabs.sendMessage(activeTab.id, {val: 'playPause'});
+  });
+
+  // Send message to service-worker
+  chrome.runtime.sendMessage({ val: 'playPause'});
 });

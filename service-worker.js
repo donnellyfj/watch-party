@@ -83,5 +83,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   else if (message.val === 'toggleConnect') {
     toggleConnect();
   }
+  else {
+    console.log(message);
+  }
   return true;
 });
