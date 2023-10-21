@@ -12,16 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// var iframe = document.querySelector('iframeId');
-// var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-// const video = innerDoc.querySelector('video');
-// console.log("Content here!")
-// console.log(video);
-// console.log(document.querySelector('*'));
+const video = document.querySelector('video');
 
 // Listen for message
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    let video = document.querySelector('video');
     console.log(video);
     console.log(document.querySelectorAll('video'));
     if (message.val === 'playPause' && video) {
