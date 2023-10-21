@@ -1,4 +1,5 @@
 const TEN_SECONDS_MS = 10 * 1000;
+const rand = Math.random();
 let webSocket = null;
 
 // Make sure the Glitch demo server is running
@@ -24,7 +25,13 @@ function connect() {
   };
 
   webSocket.onmessage = (event) => {
-    console.log(event.data);
+    let data = JSON.parse(event.data)
+    console.log(data);
+    console.log(data.message);
+    if (data.message === "Nice one! You played/paused!") {
+      console.log("Play/Pause triggered by " + data.id)
+      playPause();
+    }
   };
 
   webSocket.onclose = (event) => {
@@ -45,7 +52,7 @@ function keepAlive() {
     () => {
       if (webSocket) {
         console.log('ping');
-        webSocket.send('ping');
+        webSocket.send(JSON.stringify({message: 'ping', id: rand}));
       } else {
         clearInterval(keepAliveIntervalId);
       }
@@ -67,12 +74,20 @@ function toggleConnect() {
   }
 }
 
-
 function buttonPress() {
   console.log('Pressed!');
   if (webSocket) {
-    webSocket.send('You pressed it!');
+    webSocket.send(JSON.stringify({message: 'You pressed it!', id: rand}));
   }
+}
+
+function playPause() {
+  console.log('Play/Pause!');
+  // Send message to content
+  console.log(rand);
+  chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+    chrome.tabs.sendMessage(tabs[0].id, {val: 'playPause', id: rand});
+  });
 }
 
 // Listen for message
@@ -82,6 +97,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
   else if (message.val === 'toggleConnect') {
     toggleConnect();
+  }
+  else if (message.val === 'playPause') {
+    playPause();
+    // Alert server that play/Pause button was pressed
+    if (webSocket) {
+      webSocket.send(JSON.stringify({message: 'You played/paused!', id: rand}));
+    }
   }
   else {
     console.log(message);

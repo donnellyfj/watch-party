@@ -12,11 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// TODO: Move video retrieval to service-worker
 const video = document.querySelector('video');
+console.log("Content running!");
 
 // Listen for message
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log(video);
+    console.log(message);
     console.log(document.querySelectorAll('video'));
     if (message.val === 'playPause' && video) {
         console.log("Play/Pause");

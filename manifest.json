@@ -4,6 +4,9 @@
   "version": "1.0",
   "manifest_version": 3,
   "minimum_chrome_version": "116",
+  "permissions": [
+    "gcm"
+  ],
   "action": {
     "default_icon": "icons/socket-inactive.png",
     "default_popup": "popup.html"

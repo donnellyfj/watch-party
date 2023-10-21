@@ -26,11 +26,11 @@ toggle.addEventListener('click', async () => {
 
 const playPause = document.querySelector('#playPause');
 playPause.addEventListener('click', async () => {
-  // Send message to content
-  chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
-    var activeTab = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, {val: 'playPause'});
-  });
+  // // Send message to content
+  // chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+  //   var activeTab = tabs[0];
+  //   chrome.tabs.sendMessage(activeTab.id, {val: 'playPause'});
+  // });
 
   // Send message to service-worker
   chrome.runtime.sendMessage({ val: 'playPause'});
