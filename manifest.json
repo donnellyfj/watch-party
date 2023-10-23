@@ -1,6 +1,6 @@
 {
-  "name": "WebSocket Demo",
-  "description": "How to use WebSockets in your Chrome Extension.",
+  "name": "Watch Party",
+  "description": "Create a watch party on any video playing website.",
   "version": "1.0",
   "manifest_version": 3,
   "minimum_chrome_version": "116",
