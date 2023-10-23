@@ -27,11 +27,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         console.log(video.paused);
         if (video.paused) {
             console.log("Play");
-            document.querySelectorAll('video').forEach(vid => vid.play());
+            video.play();
+            // Use this line instead of the previous to play/pause all videos on the page
+            // document.querySelectorAll('video').forEach(vid => vid.play());
         }
         else {
             console.log("Pause");
-            document.querySelectorAll('video').forEach(vid => vid.pause());
+            video.pause();
+            // Use this line instead of the previous to play/pause all videos on the page
+            // document.querySelectorAll('video').forEach(vid => vid.pause());
         }
     }
     return true;
